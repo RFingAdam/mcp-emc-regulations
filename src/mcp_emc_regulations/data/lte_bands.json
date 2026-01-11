@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "source": "3GPP TS 36.101",
+    "title": "E-UTRA (LTE) Operating Bands",
+    "version": "Release 17",
+    "last_updated": "2025-01-10"
+  },
+  "bands": [
+    {"band": 1, "name": "IMT", "uplink_mhz": [1920, 1980], "downlink_mhz": [2110, 2170], "duplex": "FDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Global"]},
+    {"band": 2, "name": "PCS", "uplink_mhz": [1850, 1910], "downlink_mhz": [1930, 1990], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10, 15, 20], "regions": ["Americas"]},
+    {"band": 3, "name": "DCS", "uplink_mhz": [1710, 1785], "downlink_mhz": [1805, 1880], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10, 15, 20], "regions": ["Global"]},
+    {"band": 4, "name": "AWS-1", "uplink_mhz": [1710, 1755], "downlink_mhz": [2110, 2155], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10, 15, 20], "regions": ["Americas"]},
+    {"band": 5, "name": "CLR", "uplink_mhz": [824, 849], "downlink_mhz": [869, 894], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10], "regions": ["Americas"]},
+    {"band": 7, "name": "IMT-E", "uplink_mhz": [2500, 2570], "downlink_mhz": [2620, 2690], "duplex": "FDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Global"]},
+    {"band": 8, "name": "GSM900", "uplink_mhz": [880, 915], "downlink_mhz": [925, 960], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10], "regions": ["Global"]},
+    {"band": 11, "name": "LPDC", "uplink_mhz": [1427.9, 1447.9], "downlink_mhz": [1475.9, 1495.9], "duplex": "FDD", "bandwidth_mhz": [5, 10], "regions": ["Japan"]},
+    {"band": 12, "name": "LSMH", "uplink_mhz": [699, 716], "downlink_mhz": [729, 746], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10], "regions": ["Americas"]},
+    {"band": 13, "name": "USMH", "uplink_mhz": [777, 787], "downlink_mhz": [746, 756], "duplex": "FDD", "bandwidth_mhz": [5, 10], "regions": ["Americas"], "notes": "Reverse duplex"},
+    {"band": 14, "name": "US-PS", "uplink_mhz": [788, 798], "downlink_mhz": [758, 768], "duplex": "FDD", "bandwidth_mhz": [5, 10], "regions": ["Americas"], "notes": "FirstNet"},
+    {"band": 17, "name": "LSMH", "uplink_mhz": [704, 716], "downlink_mhz": [734, 746], "duplex": "FDD", "bandwidth_mhz": [5, 10], "regions": ["Americas"]},
+    {"band": 18, "name": "LJPN", "uplink_mhz": [815, 830], "downlink_mhz": [860, 875], "duplex": "FDD", "bandwidth_mhz": [5, 10, 15], "regions": ["Japan"]},
+    {"band": 19, "name": "UJPN", "uplink_mhz": [830, 845], "downlink_mhz": [875, 890], "duplex": "FDD", "bandwidth_mhz": [5, 10, 15], "regions": ["Japan"]},
+    {"band": 20, "name": "EU800", "uplink_mhz": [832, 862], "downlink_mhz": [791, 821], "duplex": "FDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Europe"], "notes": "Reverse duplex"},
+    {"band": 21, "name": "LJPN", "uplink_mhz": [1447.9, 1462.9], "downlink_mhz": [1495.9, 1510.9], "duplex": "FDD", "bandwidth_mhz": [5, 10, 15], "regions": ["Japan"]},
+    {"band": 25, "name": "EPCS", "uplink_mhz": [1850, 1915], "downlink_mhz": [1930, 1995], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10, 15, 20], "regions": ["Americas"]},
+    {"band": 26, "name": "ECLR", "uplink_mhz": [814, 849], "downlink_mhz": [859, 894], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10, 15], "regions": ["Americas"]},
+    {"band": 28, "name": "APT700", "uplink_mhz": [703, 748], "downlink_mhz": [758, 803], "duplex": "FDD", "bandwidth_mhz": [3, 5, 10, 15, 20], "regions": ["APAC"]},
+    {"band": 29, "name": "LSMH-SDL", "uplink_mhz": null, "downlink_mhz": [717, 728], "duplex": "SDL", "bandwidth_mhz": [3, 5, 10], "regions": ["Americas"]},
+    {"band": 30, "name": "WCS", "uplink_mhz": [2305, 2315], "downlink_mhz": [2350, 2360], "duplex": "FDD", "bandwidth_mhz": [5, 10], "regions": ["Americas"]},
+    {"band": 31, "name": "L450", "uplink_mhz": [452.5, 457.5], "downlink_mhz": [462.5, 467.5], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5], "regions": ["Brazil"]},
+    {"band": 38, "name": "TDD2600", "uplink_mhz": [2570, 2620], "downlink_mhz": [2570, 2620], "duplex": "TDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Global"]},
+    {"band": 39, "name": "DCS-TDD", "uplink_mhz": [1880, 1920], "downlink_mhz": [1880, 1920], "duplex": "TDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["China"]},
+    {"band": 40, "name": "TDD2300", "uplink_mhz": [2300, 2400], "downlink_mhz": [2300, 2400], "duplex": "TDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Global"]},
+    {"band": 41, "name": "BRS/EBS", "uplink_mhz": [2496, 2690], "downlink_mhz": [2496, 2690], "duplex": "TDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Americas", "Japan"]},
+    {"band": 42, "name": "CBRS", "uplink_mhz": [3400, 3600], "downlink_mhz": [3400, 3600], "duplex": "TDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Global"]},
+    {"band": 43, "name": "TDD3700", "uplink_mhz": [3600, 3800], "downlink_mhz": [3600, 3800], "duplex": "TDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Global"]},
+    {"band": 46, "name": "LAA", "uplink_mhz": [5150, 5925], "downlink_mhz": [5150, 5925], "duplex": "TDD", "bandwidth_mhz": [10, 20], "regions": ["Global"], "notes": "License Assisted Access (unlicensed)"},
+    {"band": 48, "name": "CBRS", "uplink_mhz": [3550, 3700], "downlink_mhz": [3550, 3700], "duplex": "TDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Americas"]},
+    {"band": 66, "name": "AWS-3", "uplink_mhz": [1710, 1780], "downlink_mhz": [2110, 2200], "duplex": "FDD", "bandwidth_mhz": [1.4, 3, 5, 10, 15, 20], "regions": ["Americas"]},
+    {"band": 71, "name": "600MHz", "uplink_mhz": [663, 698], "downlink_mhz": [617, 652], "duplex": "FDD", "bandwidth_mhz": [5, 10, 15, 20], "regions": ["Americas"]}
+  ],
+  "lte_m_bands": {
+    "description": "LTE Cat-M1 (eMTC) commonly supported bands",
+    "bands": [2, 4, 5, 12, 13, 25, 26, 66],
+    "notes": "Device support varies by carrier and region"
+  },
+  "nb_iot_bands": {
+    "description": "NB-IoT commonly supported bands",
+    "bands": [2, 3, 4, 5, 8, 12, 13, 17, 18, 19, 20, 25, 26, 28, 66],
+    "notes": "Deployment modes: in-band, guard-band, standalone"
+  },
+  "us_carrier_bands": {
+    "att": {"primary": [2, 4, 5, 12, 14, 17, 29, 30, 66], "lte_m": [2, 4, 12]},
+    "verizon": {"primary": [2, 4, 5, 13, 46, 48, 66], "lte_m": [4, 13]},
+    "tmobile": {"primary": [2, 4, 5, 12, 41, 66, 71], "lte_m": [2, 4, 12, 66, 71]},
+    "dish": {"primary": [29, 66, 70], "notes": "AWS-4, H Block"}
+  }
+}

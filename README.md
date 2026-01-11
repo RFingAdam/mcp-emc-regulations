@@ -19,21 +19,29 @@ An MCP server providing instant access to EMC emission limits, frequency allocat
 
 ## Features
 
-### Currently Available
-- **FCC Part 15.109** - Radiated emission limits (Class A/B unintentional radiators)
-- **FCC Part 15.207** - Conducted emission limits
-- **FCC Part 15.209** - Radiated emission limits (intentional radiators)
-- **FCC Part 15.205** - Restricted frequency bands lookup
-- **eCFR API** - Query live regulatory text from the Code of Federal Regulations
+### FCC (United States)
+- **Part 15.109** - Radiated emission limits (Class A/B)
+- **Part 15.207** - Conducted emission limits
+- **Part 15.209** - Radiated emission limits (intentional radiators)
+- **Part 15.205** - Restricted frequency bands
+- **Part 18** - ISM equipment limits and bands
+
+### CISPR (International)
+- **CISPR 11** - Industrial, scientific, medical equipment
+- **CISPR 32** - Multimedia equipment (replaces CISPR 22)
+- **CISPR 14-1** - Household appliances
+- **Limit comparison** - FCC vs CISPR with distance correction
+
+### Cellular (3GPP)
+- **LTE bands** - All E-UTRA bands with frequencies, duplex, bandwidths
+- **5G NR bands** - FR1 (sub-6 GHz) and FR2 (mmWave)
+- **US carrier info** - AT&T, Verizon, T-Mobile band assignments
+- **Frequency lookup** - Find which bands contain a frequency
 
 ### Coming Soon
-- FCC Part 18 (ISM equipment)
-- CISPR 11/22/32 (ITE emissions)
 - CISPR 25 (Automotive components)
 - IEC 60601-1-2 (Medical devices)
-- 3GPP LTE/NR band specifications
-- PTCRB/carrier certification requirements
-- Limit comparison tools
+- PTCRB certification requirements
 
 ## Installation
 
@@ -64,94 +72,94 @@ Or manually add to `~/.claude.json`:
 }
 ```
 
-### 3. Restart Claude Code
-
 ## Tools
 
-### `fcc_part15_limit`
-Get FCC Part 15 emission limits for a specific frequency.
+### EMC Limits
 
-**Parameters:**
-- `frequency_mhz` (required): Frequency in MHz
-- `section`: Which section (15.109, 15.207, 15.209, or "all")
-- `device_class`: "A" (commercial), "B" (residential), or "both"
+| Tool | Description |
+|------|-------------|
+| `fcc_part15_limit` | Get FCC Part 15 limits (15.109, 15.207, 15.209) |
+| `fcc_part18_limit` | Get FCC Part 18 ISM equipment limits |
+| `cispr_limit` | Get CISPR 11/22/32/14-1 limits |
+| `emc_compare_limits` | Compare FCC vs CISPR limits at a frequency |
 
-### `fcc_restricted_bands`
-Check if a frequency falls within a restricted band (15.205).
+### Frequency Bands
 
-**Parameters:**
-- `frequency_mhz` (required): Frequency to check
+| Tool | Description |
+|------|-------------|
+| `fcc_restricted_bands` | Check if frequency is in 15.205 restricted band |
+| `fcc_restricted_bands_list` | List all restricted bands |
+| `ism_bands_list` | List all ISM frequency bands |
 
-### `fcc_restricted_bands_list`
-List all restricted frequency bands per 15.205.
+### Cellular
 
-**Parameters:**
-- `freq_min_mhz`: Only show bands above this frequency
-- `freq_max_mhz`: Only show bands below this frequency
+| Tool | Description |
+|------|-------------|
+| `lte_band_lookup` | Look up LTE band by number |
+| `lte_bands_list` | List LTE bands (filter by region/carrier) |
+| `nr_band_lookup` | Look up 5G NR band by name (n77, n260) |
+| `nr_bands_list` | List NR bands (FR1, FR2, by carrier) |
+| `frequency_to_band` | Find which LTE/NR bands contain a frequency |
 
-### `emc_get_limit`
-Universal limit lookup across standards.
+### Reference
 
-**Parameters:**
-- `frequency_mhz` (required): Frequency in MHz
-- `standard` (required): Standard name (e.g., "FCC Part 15.109")
-- `device_class`: Device classification if applicable
-
-### `emc_standards_list`
-List all available EMC standards in the database.
-
-### `ecfr_query`
-Query the eCFR API for CFR regulatory text.
-
-**Parameters:**
-- `title` (required): CFR title (e.g., 47 for FCC)
-- `part` (required): CFR part (e.g., 15)
-- `section`: Specific section number
+| Tool | Description |
+|------|-------------|
+| `emc_standards_list` | List all available standards |
+| `ecfr_query` | Query eCFR API for CFR regulatory text |
 
 ## Examples
 
-### Check Part 15 Class B limits at 100 MHz
-
+### Check FCC Part 15 limits
 ```
-Claude, what are the FCC Part 15 Class B emission limits at 100 MHz?
+What are the FCC Part 15 Class B radiated limits at 100 MHz?
 ```
+→ Returns 43.5 dBuV/m @ 3m (quasi-peak)
 
-Response includes:
-- 15.109 radiated limits (40 dBuV/m @ 3m for Class B)
-- 15.209 intentional radiator limits
-- Warning if frequency is in a restricted band
-
-### Check if a frequency is restricted
-
+### Compare FCC vs CISPR
 ```
-Is 121.5 MHz a restricted band for Part 15 devices?
+Compare FCC and CISPR Class B limits at 200 MHz
 ```
+→ Shows both limits with distance correction notes
 
-Response: Yes - aeronautical emergency frequency, intentional radiators prohibited.
-
-### Compare Class A vs Class B
-
+### Check restricted bands
 ```
-Compare FCC Class A and Class B radiated limits at 500 MHz
+Is 121.5 MHz a restricted band?
 ```
+→ Yes - aeronautical emergency frequency
 
-Shows both limits side-by-side with measurement distances.
+### Look up LTE band
+```
+What frequencies does LTE Band 7 use?
+```
+→ UL: 2500-2570 MHz, DL: 2620-2690 MHz (FDD)
+
+### Find carrier bands
+```
+What 5G bands does T-Mobile use?
+```
+→ Low: n71, Mid: n41/n77, mmWave: n260/n261
+
+### Frequency to band lookup
+```
+What cellular bands use 3500 MHz?
+```
+→ LTE Band 42, NR n77, NR n78
+
+### Check ISM bands
+```
+Is 2.45 GHz in an ISM band?
+```
+→ Yes - 2400-2500 MHz ISM band
 
 ## Data Sources
 
 | Source | Type | Coverage |
 |--------|------|----------|
-| eCFR API | Live | 47 CFR Parts 15, 18, 22, etc. |
-| Curated JSON | Local | Structured limit tables |
-| FCC KDB | Reference | Guidance documents |
-
-## Contributing
-
-PRs welcome for adding new standards or improving data accuracy. Key areas:
-- CISPR limit tables
-- Automotive EMC (CISPR 25)
-- Medical EMC (IEC 60601-1-2)
-- Cellular band data (3GPP)
+| eCFR API | Live | 47 CFR (FCC regulations) |
+| 3GPP TS 36.101 | Curated | LTE band definitions |
+| 3GPP TS 38.101 | Curated | NR band definitions |
+| CISPR standards | Curated | Emission limits |
 
 ## License
 

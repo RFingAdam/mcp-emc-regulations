@@ -1,0 +1,135 @@
+{
+  "metadata": {
+    "source": "CISPR Standards",
+    "standards": ["CISPR 11", "CISPR 22", "CISPR 32", "CISPR 14-1"],
+    "version": "2025",
+    "last_updated": "2025-01-10",
+    "notes": "Limits curated from publicly available summaries. Verify against official standards for certification."
+  },
+  "cispr_32": {
+    "title": "Electromagnetic compatibility of multimedia equipment - Emission requirements",
+    "replaces": "CISPR 22",
+    "scope": "Information technology equipment, audio/video, broadcast receivers, multimedia",
+    "class_a": {
+      "description": "Equipment for use in commercial, industrial, or business environments",
+      "radiated_emissions": {
+        "measurement_distance_m": 10,
+        "antenna": "biconical/log-periodic",
+        "limits": [
+          {"freq_min_mhz": 30, "freq_max_mhz": 230, "limit_dbuv_m": 40, "detector": "quasi-peak"},
+          {"freq_min_mhz": 230, "freq_max_mhz": 1000, "limit_dbuv_m": 47, "detector": "quasi-peak"}
+        ],
+        "above_1ghz": {
+          "measurement_distance_m": 3,
+          "limits": [
+            {"freq_min_mhz": 1000, "freq_max_mhz": 3000, "limit_dbuv_m": 56, "detector": "peak", "notes": "Average limit 46 dBuV/m"},
+            {"freq_min_mhz": 3000, "freq_max_mhz": 6000, "limit_dbuv_m": 60, "detector": "peak", "notes": "Average limit 50 dBuV/m"}
+          ]
+        }
+      },
+      "conducted_emissions": {
+        "port": "AC mains",
+        "limits": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.5, "limit_dbuv_qp": 79, "limit_dbuv_avg": 66},
+          {"freq_min_mhz": 0.5, "freq_max_mhz": 30, "limit_dbuv_qp": 73, "limit_dbuv_avg": 60}
+        ]
+      }
+    },
+    "class_b": {
+      "description": "Equipment for use in residential environments",
+      "radiated_emissions": {
+        "measurement_distance_m": 10,
+        "antenna": "biconical/log-periodic",
+        "limits": [
+          {"freq_min_mhz": 30, "freq_max_mhz": 230, "limit_dbuv_m": 30, "detector": "quasi-peak"},
+          {"freq_min_mhz": 230, "freq_max_mhz": 1000, "limit_dbuv_m": 37, "detector": "quasi-peak"}
+        ],
+        "above_1ghz": {
+          "measurement_distance_m": 3,
+          "limits": [
+            {"freq_min_mhz": 1000, "freq_max_mhz": 3000, "limit_dbuv_m": 50, "detector": "peak", "notes": "Average limit 40 dBuV/m"},
+            {"freq_min_mhz": 3000, "freq_max_mhz": 6000, "limit_dbuv_m": 54, "detector": "peak", "notes": "Average limit 44 dBuV/m"}
+          ]
+        }
+      },
+      "conducted_emissions": {
+        "port": "AC mains",
+        "limits": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.5, "limit_dbuv_qp": 66, "limit_dbuv_avg": 56, "notes": "66 to 56 decreasing with log freq"},
+          {"freq_min_mhz": 0.5, "freq_max_mhz": 5, "limit_dbuv_qp": 56, "limit_dbuv_avg": 46},
+          {"freq_min_mhz": 5, "freq_max_mhz": 30, "limit_dbuv_qp": 60, "limit_dbuv_avg": 50}
+        ]
+      }
+    }
+  },
+  "cispr_11": {
+    "title": "Industrial, scientific and medical equipment - Radio-frequency disturbance characteristics",
+    "scope": "ISM equipment, including RF heating, welding, medical equipment",
+    "group_1": {
+      "description": "Equipment with intentionally generated RF energy for internal use only",
+      "class_a": {
+        "radiated_emissions": {
+          "measurement_distance_m": 30,
+          "limits": [
+            {"freq_min_mhz": 0.15, "freq_max_mhz": 30, "limit_dbuv_m": 30, "detector": "quasi-peak", "notes": "At 30m"},
+            {"freq_min_mhz": 30, "freq_max_mhz": 230, "limit_dbuv_m": 30, "detector": "quasi-peak", "measurement_distance_m": 30},
+            {"freq_min_mhz": 230, "freq_max_mhz": 1000, "limit_dbuv_m": 37, "detector": "quasi-peak", "measurement_distance_m": 30}
+          ]
+        }
+      },
+      "class_b": {
+        "radiated_emissions": {
+          "measurement_distance_m": 10,
+          "limits": [
+            {"freq_min_mhz": 30, "freq_max_mhz": 230, "limit_dbuv_m": 30, "detector": "quasi-peak"},
+            {"freq_min_mhz": 230, "freq_max_mhz": 1000, "limit_dbuv_m": 37, "detector": "quasi-peak"}
+          ]
+        }
+      }
+    },
+    "group_2": {
+      "description": "Equipment with intentionally generated RF energy for material treatment",
+      "class_a": {
+        "radiated_emissions": {
+          "notes": "Higher limits apply in ISM bands, per specific table in standard"
+        }
+      }
+    }
+  },
+  "cispr_14_1": {
+    "title": "Electromagnetic compatibility - Requirements for household appliances, electric tools and similar apparatus",
+    "scope": "Household appliances, electric tools, similar apparatus with motors or switching",
+    "radiated_emissions": {
+      "measurement_distance_m": 10,
+      "limits": [
+        {"freq_min_mhz": 30, "freq_max_mhz": 230, "limit_dbuv_m": 30, "detector": "quasi-peak"},
+        {"freq_min_mhz": 230, "freq_max_mhz": 1000, "limit_dbuv_m": 37, "detector": "quasi-peak"}
+      ]
+    },
+    "conducted_emissions": {
+      "mains_terminal": {
+        "limits": [
+          {"freq_min_mhz": 0.148, "freq_max_mhz": 0.5, "limit_dbuv_qp": 66, "limit_dbuv_avg": 56, "notes": "Decreasing with log freq"},
+          {"freq_min_mhz": 0.5, "freq_max_mhz": 5, "limit_dbuv_qp": 56, "limit_dbuv_avg": 46},
+          {"freq_min_mhz": 5, "freq_max_mhz": 30, "limit_dbuv_qp": 60, "limit_dbuv_avg": 50}
+        ]
+      },
+      "discontinuous_disturbance": {
+        "notes": "Click rate assessment required for switching devices"
+      }
+    }
+  },
+  "comparison_fcc_cispr": {
+    "notes": "FCC and CISPR limits are similar but not identical. Key differences:",
+    "differences": [
+      "FCC Class B measured at 3m, CISPR Class B at 10m - limits not directly comparable without distance correction",
+      "CISPR uses 10m reference, FCC uses 3m for frequencies above 30 MHz",
+      "Above 1 GHz, both use 3m but limits differ",
+      "Conducted limits are similar between FCC Part 15 and CISPR Class B"
+    ],
+    "distance_correction": {
+      "formula": "Add 20*log10(d1/d2) dB when converting between distances",
+      "example": "10m to 3m: add 20*log10(10/3) = +10.5 dB"
+    }
+  }
+}
