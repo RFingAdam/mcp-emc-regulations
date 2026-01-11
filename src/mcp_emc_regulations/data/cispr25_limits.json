@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "source": "CISPR 25:2021",
+    "title": "Vehicles, boats and internal combustion engines - Radio disturbance characteristics - Limits and methods of measurement for the protection of on-board receivers",
+    "edition": "5th Edition (2021)",
+    "scope": "Component/module level EMC for automotive",
+    "last_updated": "2025-01-10",
+    "notes": "Limits curated from publicly available summaries. Verify against official standard for certification."
+  },
+  "classes": {
+    "description": "CISPR 25 defines 5 classes of limits, Class 1 being least stringent, Class 5 most stringent",
+    "class_1": "Least protection - basic functionality",
+    "class_2": "Low protection",
+    "class_3": "Medium protection - typical consumer",
+    "class_4": "High protection",
+    "class_5": "Highest protection - premium/safety-critical"
+  },
+  "radiated_emissions": {
+    "broadband": {
+      "description": "Broadband radiated emissions measured with peak detector",
+      "measurement_method": "ALSE (Absorber Lined Shielded Enclosure)",
+      "antenna_distance_m": 1,
+      "limits": {
+        "class_1": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv_m": 52},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.5, "limit_dbuv_m": 52},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 2, "limit_dbuv_m": 52},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv_m": 46},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv_m": 46},
+          {"freq_min_mhz": 68, "freq_max_mhz": 87, "limit_dbuv_m": 40},
+          {"freq_min_mhz": 76, "freq_max_mhz": 108, "limit_dbuv_m": 40},
+          {"freq_min_mhz": 142, "freq_max_mhz": 175, "limit_dbuv_m": 38},
+          {"freq_min_mhz": 380, "freq_max_mhz": 512, "limit_dbuv_m": 48},
+          {"freq_min_mhz": 820, "freq_max_mhz": 960, "limit_dbuv_m": 48},
+          {"freq_min_mhz": 1530, "freq_max_mhz": 1700, "limit_dbuv_m": 48},
+          {"freq_min_mhz": 2100, "freq_max_mhz": 2500, "limit_dbuv_m": 54},
+          {"freq_min_mhz": 2500, "freq_max_mhz": 2690, "limit_dbuv_m": 48},
+          {"freq_min_mhz": 5100, "freq_max_mhz": 5900, "limit_dbuv_m": 60}
+        ],
+        "class_2": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv_m": 42},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.5, "limit_dbuv_m": 42},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 2, "limit_dbuv_m": 42},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv_m": 36},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv_m": 36},
+          {"freq_min_mhz": 68, "freq_max_mhz": 87, "limit_dbuv_m": 30},
+          {"freq_min_mhz": 76, "freq_max_mhz": 108, "limit_dbuv_m": 30},
+          {"freq_min_mhz": 142, "freq_max_mhz": 175, "limit_dbuv_m": 28},
+          {"freq_min_mhz": 380, "freq_max_mhz": 512, "limit_dbuv_m": 38},
+          {"freq_min_mhz": 820, "freq_max_mhz": 960, "limit_dbuv_m": 38},
+          {"freq_min_mhz": 1530, "freq_max_mhz": 1700, "limit_dbuv_m": 38},
+          {"freq_min_mhz": 2100, "freq_max_mhz": 2500, "limit_dbuv_m": 44},
+          {"freq_min_mhz": 2500, "freq_max_mhz": 2690, "limit_dbuv_m": 38},
+          {"freq_min_mhz": 5100, "freq_max_mhz": 5900, "limit_dbuv_m": 50}
+        ],
+        "class_3": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv_m": 32},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.5, "limit_dbuv_m": 32},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 2, "limit_dbuv_m": 32},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv_m": 26},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv_m": 26},
+          {"freq_min_mhz": 68, "freq_max_mhz": 87, "limit_dbuv_m": 20},
+          {"freq_min_mhz": 76, "freq_max_mhz": 108, "limit_dbuv_m": 20},
+          {"freq_min_mhz": 142, "freq_max_mhz": 175, "limit_dbuv_m": 18},
+          {"freq_min_mhz": 380, "freq_max_mhz": 512, "limit_dbuv_m": 28},
+          {"freq_min_mhz": 820, "freq_max_mhz": 960, "limit_dbuv_m": 28},
+          {"freq_min_mhz": 1530, "freq_max_mhz": 1700, "limit_dbuv_m": 28},
+          {"freq_min_mhz": 2100, "freq_max_mhz": 2500, "limit_dbuv_m": 34},
+          {"freq_min_mhz": 2500, "freq_max_mhz": 2690, "limit_dbuv_m": 28},
+          {"freq_min_mhz": 5100, "freq_max_mhz": 5900, "limit_dbuv_m": 40}
+        ],
+        "class_4": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv_m": 22},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.5, "limit_dbuv_m": 22},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 2, "limit_dbuv_m": 22},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv_m": 16},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv_m": 16},
+          {"freq_min_mhz": 68, "freq_max_mhz": 87, "limit_dbuv_m": 10},
+          {"freq_min_mhz": 76, "freq_max_mhz": 108, "limit_dbuv_m": 10},
+          {"freq_min_mhz": 142, "freq_max_mhz": 175, "limit_dbuv_m": 8},
+          {"freq_min_mhz": 380, "freq_max_mhz": 512, "limit_dbuv_m": 18},
+          {"freq_min_mhz": 820, "freq_max_mhz": 960, "limit_dbuv_m": 18},
+          {"freq_min_mhz": 1530, "freq_max_mhz": 1700, "limit_dbuv_m": 18},
+          {"freq_min_mhz": 2100, "freq_max_mhz": 2500, "limit_dbuv_m": 24},
+          {"freq_min_mhz": 2500, "freq_max_mhz": 2690, "limit_dbuv_m": 18},
+          {"freq_min_mhz": 5100, "freq_max_mhz": 5900, "limit_dbuv_m": 30}
+        ],
+        "class_5": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv_m": 12},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.5, "limit_dbuv_m": 12},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 2, "limit_dbuv_m": 12},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv_m": 6},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv_m": 6},
+          {"freq_min_mhz": 68, "freq_max_mhz": 87, "limit_dbuv_m": 0},
+          {"freq_min_mhz": 76, "freq_max_mhz": 108, "limit_dbuv_m": 0},
+          {"freq_min_mhz": 142, "freq_max_mhz": 175, "limit_dbuv_m": -2},
+          {"freq_min_mhz": 380, "freq_max_mhz": 512, "limit_dbuv_m": 8},
+          {"freq_min_mhz": 820, "freq_max_mhz": 960, "limit_dbuv_m": 8},
+          {"freq_min_mhz": 1530, "freq_max_mhz": 1700, "limit_dbuv_m": 8},
+          {"freq_min_mhz": 2100, "freq_max_mhz": 2500, "limit_dbuv_m": 14},
+          {"freq_min_mhz": 2500, "freq_max_mhz": 2690, "limit_dbuv_m": 8},
+          {"freq_min_mhz": 5100, "freq_max_mhz": 5900, "limit_dbuv_m": 20}
+        ]
+      }
+    }
+  },
+  "conducted_emissions": {
+    "voltage_method": {
+      "description": "Conducted emissions measured at power supply lines using voltage method",
+      "limits": {
+        "class_1": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv": 90},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.53, "limit_dbuv": 80},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 1.8, "limit_dbuv": 80},
+          {"freq_min_mhz": 1.8, "freq_max_mhz": 5.9, "limit_dbuv": 80},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv": 70},
+          {"freq_min_mhz": 6.2, "freq_max_mhz": 30, "limit_dbuv": 70},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv": 64},
+          {"freq_min_mhz": 54, "freq_max_mhz": 108, "limit_dbuv": 58}
+        ],
+        "class_2": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv": 80},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.53, "limit_dbuv": 70},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 1.8, "limit_dbuv": 70},
+          {"freq_min_mhz": 1.8, "freq_max_mhz": 5.9, "limit_dbuv": 70},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv": 60},
+          {"freq_min_mhz": 6.2, "freq_max_mhz": 30, "limit_dbuv": 60},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv": 54},
+          {"freq_min_mhz": 54, "freq_max_mhz": 108, "limit_dbuv": 48}
+        ],
+        "class_3": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv": 70},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.53, "limit_dbuv": 60},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 1.8, "limit_dbuv": 60},
+          {"freq_min_mhz": 1.8, "freq_max_mhz": 5.9, "limit_dbuv": 60},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv": 50},
+          {"freq_min_mhz": 6.2, "freq_max_mhz": 30, "limit_dbuv": 50},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv": 44},
+          {"freq_min_mhz": 54, "freq_max_mhz": 108, "limit_dbuv": 38}
+        ],
+        "class_4": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv": 60},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.53, "limit_dbuv": 50},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 1.8, "limit_dbuv": 50},
+          {"freq_min_mhz": 1.8, "freq_max_mhz": 5.9, "limit_dbuv": 50},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv": 40},
+          {"freq_min_mhz": 6.2, "freq_max_mhz": 30, "limit_dbuv": 40},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv": 34},
+          {"freq_min_mhz": 54, "freq_max_mhz": 108, "limit_dbuv": 28}
+        ],
+        "class_5": [
+          {"freq_min_mhz": 0.15, "freq_max_mhz": 0.3, "limit_dbuv": 50},
+          {"freq_min_mhz": 0.3, "freq_max_mhz": 0.53, "limit_dbuv": 40},
+          {"freq_min_mhz": 0.53, "freq_max_mhz": 1.8, "limit_dbuv": 40},
+          {"freq_min_mhz": 1.8, "freq_max_mhz": 5.9, "limit_dbuv": 40},
+          {"freq_min_mhz": 5.9, "freq_max_mhz": 6.2, "limit_dbuv": 30},
+          {"freq_min_mhz": 6.2, "freq_max_mhz": 30, "limit_dbuv": 30},
+          {"freq_min_mhz": 30, "freq_max_mhz": 54, "limit_dbuv": 24},
+          {"freq_min_mhz": 54, "freq_max_mhz": 108, "limit_dbuv": 18}
+        ]
+      }
+    }
+  },
+  "frequency_bands": {
+    "description": "Protected frequency bands in CISPR 25",
+    "bands": [
+      {"name": "LW Broadcast", "freq_min_mhz": 0.15, "freq_max_mhz": 0.3},
+      {"name": "MW Broadcast", "freq_min_mhz": 0.53, "freq_max_mhz": 1.8},
+      {"name": "SW Broadcast", "freq_min_mhz": 5.9, "freq_max_mhz": 6.2},
+      {"name": "VHF TV/FM", "freq_min_mhz": 30, "freq_max_mhz": 54},
+      {"name": "FM Broadcast", "freq_min_mhz": 76, "freq_max_mhz": 108},
+      {"name": "DAB", "freq_min_mhz": 174, "freq_max_mhz": 240},
+      {"name": "TV Band", "freq_min_mhz": 470, "freq_max_mhz": 770},
+      {"name": "Cellular", "freq_min_mhz": 820, "freq_max_mhz": 960},
+      {"name": "GPS L1", "freq_min_mhz": 1575.42, "freq_max_mhz": 1575.42},
+      {"name": "SDARS", "freq_min_mhz": 2320, "freq_max_mhz": 2345},
+      {"name": "WiFi 2.4G", "freq_min_mhz": 2400, "freq_max_mhz": 2500},
+      {"name": "WiFi 5G", "freq_min_mhz": 5150, "freq_max_mhz": 5850}
+    ]
+  },
+  "oem_requirements": {
+    "description": "Typical OEM class requirements by component type",
+    "examples": [
+      {"component": "Infotainment/Radio", "typical_class": 5, "notes": "Highest protection for receiver sensitivity"},
+      {"component": "Telematics/TCU", "typical_class": 4, "notes": "High protection for cellular"},
+      {"component": "ADAS sensors", "typical_class": 4, "notes": "Safety-critical"},
+      {"component": "Body control module", "typical_class": 3, "notes": "Standard protection"},
+      {"component": "Powertrain ECU", "typical_class": 3, "notes": "Standard protection"},
+      {"component": "Lighting modules", "typical_class": 2, "notes": "Lower protection acceptable"},
+      {"component": "Seat/mirror motors", "typical_class": 1, "notes": "Basic protection"}
+    ]
+  }
+}

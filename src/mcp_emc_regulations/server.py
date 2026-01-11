@@ -24,6 +24,8 @@ PART15_LIMITS = load_json("part15_limits.json")
 PART18_LIMITS = load_json("part18_limits.json")
 RESTRICTED_BANDS = load_json("restricted_bands.json")
 CISPR_LIMITS = load_json("cispr_limits.json")
+CISPR25_LIMITS = load_json("cispr25_limits.json")
+AUTOMOTIVE_EMC = load_json("automotive_emc.json")
 LTE_BANDS = load_json("lte_bands.json")
 NR_BANDS = load_json("nr_bands.json")
 
@@ -97,6 +99,22 @@ def find_nr_band(band_name: str) -> dict | None:
     for band in NR_BANDS.get('fr2_bands', {}).get('bands', []):
         if band['band'].lower() == band_name:
             return band
+    return None
+
+
+def get_cispr25_limit(device_class: int, freq_mhz: float, emission_type: str = "radiated") -> dict | None:
+    """Get CISPR 25 limit for automotive components."""
+    if emission_type == "radiated":
+        limits_data = CISPR25_LIMITS.get('radiated_emissions', {}).get('broadband', {}).get('limits', {})
+    else:
+        limits_data = CISPR25_LIMITS.get('conducted_emissions', {}).get('voltage_method', {}).get('limits', {})
+
+    class_key = f"class_{device_class}"
+    limits = limits_data.get(class_key, [])
+
+    for limit in limits:
+        if limit['freq_min_mhz'] <= freq_mhz <= limit['freq_max_mhz']:
+            return limit
     return None
 
 
@@ -290,6 +308,45 @@ async def list_tools() -> list[Tool]:
                 },
                 "required": ["frequency_mhz"]
             }
+        ),
+        Tool(
+            name="cispr25_limit",
+            description="Get CISPR 25 automotive component emission limits. Returns limits for Classes 1-5 (1=least stringent, 5=most stringent).",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "frequency_mhz": {"type": "number", "description": "Frequency in MHz"},
+                    "device_class": {"type": "integer", "enum": [1, 2, 3, 4, 5], "description": "CISPR 25 class (1-5)"},
+                    "emission_type": {"type": "string", "enum": ["radiated", "conducted"], "description": "Emission type"}
+                },
+                "required": ["frequency_mhz"]
+            }
+        ),
+        Tool(
+            name="cispr12_limit",
+            description="Get CISPR 12 vehicle-level emission limits for type approval.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "frequency_mhz": {"type": "number", "description": "Frequency in MHz"}
+                },
+                "required": ["frequency_mhz"]
+            }
+        ),
+        Tool(
+            name="iso11452_levels",
+            description="Get ISO 11452-2 radiated immunity test levels for automotive components.",
+            inputSchema={"type": "object", "properties": {}}
+        ),
+        Tool(
+            name="iso7637_pulses",
+            description="Get ISO 7637-2 conducted transient immunity test pulses for automotive components.",
+            inputSchema={"type": "object", "properties": {}}
+        ),
+        Tool(
+            name="automotive_emc_overview",
+            description="Get an overview of automotive EMC standards (CISPR 12, CISPR 25, ISO 11452, ISO 7637, UNECE R10).",
+            inputSchema={"type": "object", "properties": {}}
         ),
         Tool(
             name="emc_standards_list",
@@ -623,6 +680,130 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
 
         return [TextContent(type="text", text=result)]
 
+    elif name == "cispr25_limit":
+        freq_mhz = arguments["frequency_mhz"]
+        device_class = arguments.get("device_class", 3)
+        emission_type = arguments.get("emission_type", "radiated")
+
+        result = f"CISPR 25 Class {device_class} at {freq_mhz} MHz\n{'='*50}\n\n"
+
+        classes_info = CISPR25_LIMITS.get('classes', {})
+        result += f"Class {device_class}: {classes_info.get(f'class_{device_class}', 'Unknown')}\n\n"
+
+        limit = get_cispr25_limit(device_class, freq_mhz, emission_type)
+
+        if limit:
+            if emission_type == "radiated":
+                result += f"Radiated Emissions (@ 1m, ALSE method):\n"
+                result += f"  {limit['freq_min_mhz']} - {limit['freq_max_mhz']} MHz: {limit['limit_dbuv_m']} dBuV/m (peak)\n"
+            else:
+                result += f"Conducted Emissions (voltage method):\n"
+                result += f"  {limit['freq_min_mhz']} - {limit['freq_max_mhz']} MHz: {limit['limit_dbuv']} dBuV\n"
+        else:
+            result += f"No {emission_type} limit found for this frequency.\n"
+
+        # Show all classes for comparison
+        result += f"\n## All Classes at {freq_mhz} MHz ({emission_type}):\n"
+        for cls in [1, 2, 3, 4, 5]:
+            lim = get_cispr25_limit(cls, freq_mhz, emission_type)
+            if lim:
+                val = lim.get('limit_dbuv_m', lim.get('limit_dbuv', '?'))
+                unit = "dBuV/m" if emission_type == "radiated" else "dBuV"
+                marker = " ◄" if cls == device_class else ""
+                result += f"  Class {cls}: {val} {unit}{marker}\n"
+
+        return [TextContent(type="text", text=result)]
+
+    elif name == "cispr12_limit":
+        freq_mhz = arguments["frequency_mhz"]
+
+        result = f"CISPR 12 Vehicle-Level Limits at {freq_mhz} MHz\n{'='*50}\n\n"
+        result += "Measurement distance: 10m\n\n"
+
+        cispr12 = AUTOMOTIVE_EMC.get('cispr_12', {})
+        bb_limits = cispr12.get('limits', {}).get('broadband', [])
+        nb_limits = cispr12.get('limits', {}).get('narrowband', [])
+
+        bb_limit = find_limit_for_frequency(bb_limits, freq_mhz)
+        nb_limit = find_limit_for_frequency(nb_limits, freq_mhz)
+
+        if bb_limit:
+            result += f"Broadband (quasi-peak):\n"
+            result += f"  {bb_limit['freq_min_mhz']} - {bb_limit['freq_max_mhz']} MHz: {bb_limit['limit_dbuv_m']} dBuV/m\n"
+        if nb_limit:
+            result += f"\nNarrowband (average):\n"
+            result += f"  {nb_limit['freq_min_mhz']} - {nb_limit['freq_max_mhz']} MHz: {nb_limit['limit_dbuv_m']} dBuV/m\n"
+
+        if not bb_limit and not nb_limit:
+            result += "No limits defined for this frequency (typically 30-1000 MHz).\n"
+
+        return [TextContent(type="text", text=result)]
+
+    elif name == "iso11452_levels":
+        result = "ISO 11452-2 Radiated Immunity Test Levels\n" + "="*50 + "\n\n"
+
+        iso_data = AUTOMOTIVE_EMC.get('iso_11452_2', {})
+        result += f"{iso_data.get('title', '')}\n"
+        result += f"Frequency range: {iso_data.get('test_levels', {}).get('frequency_range', {}).get('min_mhz', '?')}-"
+        result += f"{iso_data.get('test_levels', {}).get('frequency_range', {}).get('max_mhz', '?')} MHz\n"
+        result += f"Modulation: {iso_data.get('test_levels', {}).get('modulation', '1 kHz AM, 80%')}\n\n"
+
+        result += "## Test Severity Levels:\n"
+        for level in iso_data.get('test_levels', {}).get('levels', []):
+            result += f"  Level {level['level']}: {level['field_strength_v_m']} V/m - {level['typical_use']}\n"
+
+        result += "\n## Typical OEM Requirements:\n"
+        for req in iso_data.get('oem_requirements', {}).get('examples', []):
+            result += f"  {req['oem']}: {req['level_v_m']} V/m ({req['range_mhz'][0]}-{req['range_mhz'][1]} MHz)\n"
+
+        return [TextContent(type="text", text=result)]
+
+    elif name == "iso7637_pulses":
+        result = "ISO 7637-2 Conducted Transient Test Pulses\n" + "="*50 + "\n\n"
+
+        iso_data = AUTOMOTIVE_EMC.get('iso_7637_2', {})
+        result += f"{iso_data.get('title', '')}\n\n"
+
+        for pulse in iso_data.get('test_pulses', []):
+            result += f"## Pulse {pulse['pulse']}\n"
+            result += f"  Description: {pulse['description']}\n"
+            if 'voltage_range_v' in pulse:
+                result += f"  Voltage: {pulse['voltage_range_v'][0]} to {pulse['voltage_range_v'][1]} V\n"
+            if 'rise_time_us' in pulse:
+                result += f"  Rise time: {pulse['rise_time_us']} µs\n"
+            elif 'rise_time_ns' in pulse:
+                result += f"  Rise time: {pulse['rise_time_ns']} ns\n"
+            result += "\n"
+
+        result += "## Functional Status Classes:\n"
+        for cls in iso_data.get('functional_status', {}).get('classes', []):
+            result += f"  Class {cls['class']}: {cls['description']}\n"
+
+        return [TextContent(type="text", text=result)]
+
+    elif name == "automotive_emc_overview":
+        result = "Automotive EMC Standards Overview\n" + "="*50 + "\n\n"
+
+        comparison = AUTOMOTIVE_EMC.get('comparison_chart', {})
+        result += "## Standards Summary:\n"
+        for std in comparison.get('standards', []):
+            result += f"  {std['standard']:12} | {std['scope']:35} | {std['type']}\n"
+
+        result += "\n## CISPR 25 Classes (Component Emissions):\n"
+        classes = CISPR25_LIMITS.get('classes', {})
+        for i in range(1, 6):
+            result += f"  Class {i}: {classes.get(f'class_{i}', 'Unknown')}\n"
+
+        result += "\n## ISO 11452-2 Levels (Component Immunity):\n"
+        for level in AUTOMOTIVE_EMC.get('iso_11452_2', {}).get('test_levels', {}).get('levels', [])[:4]:
+            result += f"  Level {level['level']}: {level['field_strength_v_m']} V/m\n"
+
+        result += "\n## Typical OEM Requirements:\n"
+        for req in CISPR25_LIMITS.get('oem_requirements', {}).get('examples', [])[:5]:
+            result += f"  {req['component']:25} → Class {req['typical_class']}\n"
+
+        return [TextContent(type="text", text=result)]
+
     elif name == "emc_standards_list":
         result = "Available EMC Standards and Regulations\n" + "="*45 + "\n\n"
 
@@ -638,13 +819,18 @@ async def call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
         result += "  ✓ CISPR 32 - Multimedia equipment (replaces CISPR 22)\n"
         result += "  ✓ CISPR 14-1 - Household appliances\n\n"
 
+        result += "## Automotive EMC\n"
+        result += "  ✓ CISPR 25 - Component emissions (Classes 1-5)\n"
+        result += "  ✓ CISPR 12 - Vehicle-level emissions\n"
+        result += "  ✓ ISO 11452-2 - Radiated immunity\n"
+        result += "  ✓ ISO 7637-2 - Conducted transients\n\n"
+
         result += "## Cellular (3GPP)\n"
         result += "  ✓ LTE bands (E-UTRA)\n"
         result += "  ✓ 5G NR bands (FR1 + FR2)\n"
         result += "  ✓ US carrier band info (AT&T, Verizon, T-Mobile)\n\n"
 
         result += "## Coming Soon\n"
-        result += "  - CISPR 25 - Automotive components\n"
         result += "  - IEC 60601-1-2 - Medical devices\n"
         result += "  - PTCRB certification requirements\n"
 

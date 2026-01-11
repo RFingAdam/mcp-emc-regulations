@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "sources": ["CISPR 12", "ISO 11452-2", "ISO 7637-2", "UNECE R10"],
+    "scope": "Automotive EMC - vehicle and component level",
+    "last_updated": "2025-01-10"
+  },
+  "cispr_12": {
+    "title": "Vehicles, boats and internal combustion engines - Radio disturbance characteristics - Limits and methods of measurement for the protection of off-board receivers",
+    "scope": "Vehicle-level emissions for type approval",
+    "measurement_distance_m": 10,
+    "limits": {
+      "description": "Limits protect broadcast receivers outside the vehicle",
+      "broadband": [
+        {"freq_min_mhz": 30, "freq_max_mhz": 75, "limit_dbuv_m": 34, "detector": "quasi-peak"},
+        {"freq_min_mhz": 75, "freq_max_mhz": 400, "limit_dbuv_m": 34, "detector": "quasi-peak"},
+        {"freq_min_mhz": 400, "freq_max_mhz": 1000, "limit_dbuv_m": 34, "detector": "quasi-peak", "notes": "Optional above 400 MHz"}
+      ],
+      "narrowband": [
+        {"freq_min_mhz": 30, "freq_max_mhz": 75, "limit_dbuv_m": 24, "detector": "average"},
+        {"freq_min_mhz": 75, "freq_max_mhz": 400, "limit_dbuv_m": 24, "detector": "average"},
+        {"freq_min_mhz": 400, "freq_max_mhz": 1000, "limit_dbuv_m": 24, "detector": "average", "notes": "Optional above 400 MHz"}
+      ]
+    }
+  },
+  "iso_11452_2": {
+    "title": "Road vehicles - Component test methods for electrical disturbances from narrowband radiated electromagnetic energy",
+    "subtitle": "Part 2: Absorber-lined shielded enclosure",
+    "scope": "Component radiated immunity testing",
+    "test_levels": {
+      "description": "Test severity levels for automotive components",
+      "levels": [
+        {"level": 1, "field_strength_v_m": 25, "typical_use": "Non-critical interior components"},
+        {"level": 2, "field_strength_v_m": 50, "typical_use": "General interior components"},
+        {"level": 3, "field_strength_v_m": 100, "typical_use": "Standard automotive grade"},
+        {"level": 4, "field_strength_v_m": 200, "typical_use": "High immunity requirements"},
+        {"level": "X", "field_strength_v_m": "custom", "typical_use": "OEM-specified level"}
+      ],
+      "frequency_range": {"min_mhz": 20, "max_mhz": 2000},
+      "modulation": "1 kHz AM, 80% depth"
+    },
+    "oem_requirements": {
+      "description": "Typical OEM immunity requirements",
+      "examples": [
+        {"oem": "Generic", "level_v_m": 100, "range_mhz": [20, 2000]},
+        {"oem": "Premium OEM", "level_v_m": 200, "range_mhz": [20, 2000]},
+        {"oem": "Safety-critical", "level_v_m": 200, "range_mhz": [20, 6000], "notes": "Extended frequency for V2X"}
+      ]
+    }
+  },
+  "iso_7637_2": {
+    "title": "Road vehicles - Electrical disturbances from conduction and coupling",
+    "subtitle": "Part 2: Electrical transient conduction along supply lines only",
+    "scope": "Conducted transient immunity on power supply",
+    "test_pulses": [
+      {
+        "pulse": "1",
+        "description": "Disconnection of inductors in parallel with DUT",
+        "voltage_range_v": [-150, -100],
+        "rise_time_us": 1,
+        "duration_ms": 2,
+        "source_impedance_ohm": 10
+      },
+      {
+        "pulse": "2a",
+        "description": "Sudden interruption of supply current (DUT stopped)",
+        "voltage_range_v": [50, 100],
+        "rise_time_us": 1,
+        "duration_us": 50,
+        "repetition": "0.5 - 5 Hz"
+      },
+      {
+        "pulse": "2b",
+        "description": "Sudden interruption of supply current (DUT operating)",
+        "voltage_range_v": [10, 35],
+        "rise_time_us": 1,
+        "duration_us": 200,
+        "repetition": "0.5 - 5 Hz"
+      },
+      {
+        "pulse": "3a",
+        "description": "Switching transients (negative)",
+        "voltage_range_v": [-150, -40],
+        "rise_time_ns": 5,
+        "duration_ns": 100,
+        "repetition": "Burst of 100"
+      },
+      {
+        "pulse": "3b",
+        "description": "Switching transients (positive)",
+        "voltage_range_v": [40, 150],
+        "rise_time_ns": 5,
+        "duration_ns": 100,
+        "repetition": "Burst of 100"
+      },
+      {
+        "pulse": "4",
+        "description": "Starting profile - voltage reduction",
+        "notes": "Battery voltage drops during engine cranking",
+        "12v_system": {"min_v": 4.5, "max_v": 6, "duration_s": 15},
+        "24v_system": {"min_v": 9, "max_v": 12, "duration_s": 15}
+      },
+      {
+        "pulse": "5a",
+        "description": "Load dump (unsuppressed)",
+        "voltage_range_v": [65, 120],
+        "rise_time_us": 10,
+        "duration_ms": [40, 400]
+      },
+      {
+        "pulse": "5b",
+        "description": "Load dump (suppressed)",
+        "voltage_range_v": [27, 35],
+        "rise_time_us": 10,
+        "duration_ms": [100, 350]
+      }
+    ],
+    "functional_status": {
+      "description": "Classification of component behavior during and after test",
+      "classes": [
+        {"class": "A", "description": "Normal performance within specification"},
+        {"class": "B", "description": "Temporary degradation, self-recoverable"},
+        {"class": "C", "description": "Temporary degradation, operator intervention needed"},
+        {"class": "D", "description": "Permanent damage - failure"}
+      ]
+    }
+  },
+  "unece_r10": {
+    "title": "UNECE Regulation No. 10",
+    "full_title": "Uniform provisions concerning the approval of vehicles with regard to electromagnetic compatibility",
+    "scope": "Type approval of vehicles and components for EU/ECE markets",
+    "applicable_countries": "54+ contracting parties",
+    "current_revision": "Rev.6",
+    "references": ["CISPR 12", "CISPR 25", "ISO 11452-2", "ISO 7637"],
+    "test_requirements": {
+      "emissions": {
+        "vehicle": "CISPR 12 limits",
+        "component": "CISPR 25 limits (manufacturer specified class)"
+      },
+      "immunity": {
+        "vehicle": "20 V/m, 20-2000 MHz",
+        "component": "Per ISO 11452-2, level per manufacturer specification"
+      }
+    }
+  },
+  "comparison_chart": {
+    "description": "Quick reference for automotive EMC standards",
+    "standards": [
+      {"standard": "CISPR 12", "scope": "Vehicle emissions", "type": "Regulatory"},
+      {"standard": "CISPR 25", "scope": "Component emissions", "type": "Industry"},
+      {"standard": "ISO 11452-2", "scope": "Component immunity (radiated)", "type": "Industry"},
+      {"standard": "ISO 7637-2", "scope": "Component immunity (conducted)", "type": "Industry"},
+      {"standard": "UNECE R10", "scope": "Vehicle/component type approval", "type": "Regulatory"}
+    ]
+  }
+}
