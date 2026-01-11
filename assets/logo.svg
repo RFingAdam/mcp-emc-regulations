@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22d3ee"/>
+      <stop offset="50%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#f472b6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Spectrum analyzer display -->
+  <rect x="15" y="15" width="100" height="75" rx="6" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Grid lines -->
+  <g stroke="#334155" stroke-width="0.5">
+    <line x1="25" y1="30" x2="105" y2="30"/>
+    <line x1="25" y1="45" x2="105" y2="45"/>
+    <line x1="25" y1="60" x2="105" y2="60"/>
+    <line x1="25" y1="75" x2="105" y2="75"/>
+    <line x1="35" y1="22" x2="35" y2="82"/>
+    <line x1="55" y1="22" x2="55" y2="82"/>
+    <line x1="75" y1="22" x2="75" y2="82"/>
+    <line x1="95" y1="22" x2="95" y2="82"/>
+  </g>
+
+  <!-- Spectrum trace -->
+  <path d="M 25 70 L 30 68 L 35 55 L 40 50 L 42 35 L 45 42 L 48 45 L 52 48 L 58 52 L 62 38 L 65 32 L 68 36 L 72 48 L 78 55 L 82 42 L 85 38 L 88 45 L 92 52 L 98 58 L 105 62"
+        stroke="url(#waveGrad)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="d"
+             values="M 25 70 L 30 68 L 35 55 L 40 50 L 42 35 L 45 42 L 48 45 L 52 48 L 58 52 L 62 38 L 65 32 L 68 36 L 72 48 L 78 55 L 82 42 L 85 38 L 88 45 L 92 52 L 98 58 L 105 62;
+                     M 25 68 L 30 65 L 35 52 L 40 48 L 42 38 L 45 45 L 48 48 L 52 45 L 58 50 L 62 35 L 65 30 L 68 38 L 72 50 L 78 52 L 82 40 L 85 35 L 88 42 L 92 55 L 98 60 L 105 65;
+                     M 25 70 L 30 68 L 35 55 L 40 50 L 42 35 L 45 42 L 48 45 L 52 48 L 58 52 L 62 38 L 65 32 L 68 36 L 72 48 L 78 55 L 82 42 L 85 38 L 88 45 L 92 52 L 98 58 L 105 62"
+             dur="3s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Limit line (dashed) -->
+  <line x1="25" y1="40" x2="105" y2="40" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.8"/>
+  <text x="107" y="43" font-family="monospace" font-size="7" fill="#ef4444">LIMIT</text>
+
+  <!-- Frequency labels -->
+  <text x="25" y="90" font-family="monospace" font-size="6" fill="#64748b">30M</text>
+  <text x="60" y="90" font-family="monospace" font-size="6" fill="#64748b">1G</text>
+  <text x="95" y="90" font-family="monospace" font-size="6" fill="#64748b">6G</text>
+
+  <!-- Connection arrow -->
+  <path d="M 125 52 L 145 52 M 140 47 L 145 52 L 140 57" stroke="#64748b" stroke-width="2" fill="none"/>
+
+  <!-- Database/book icon -->
+  <g transform="translate(155, 30)">
+    <rect x="0" y="0" width="40" height="45" rx="4" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5"/>
+    <!-- Pages -->
+    <rect x="5" y="5" width="30" height="8" rx="2" fill="#22d3ee" opacity="0.3"/>
+    <rect x="5" y="16" width="30" height="8" rx="2" fill="#a855f7" opacity="0.3"/>
+    <rect x="5" y="27" width="30" height="8" rx="2" fill="#f472b6" opacity="0.3"/>
+    <!-- Text lines -->
+    <line x1="8" y1="9" x2="28" y2="9" stroke="#22d3ee" stroke-width="1.5"/>
+    <line x1="8" y1="20" x2="24" y2="20" stroke="#a855f7" stroke-width="1.5"/>
+    <line x1="8" y1="31" x2="30" y2="31" stroke="#f472b6" stroke-width="1.5"/>
+  </g>
+
+  <!-- Standards badges -->
+  <g transform="translate(205, 25)">
+    <rect x="0" y="0" width="32" height="16" rx="3" fill="#1e40af" stroke="#3b82f6" stroke-width="1"/>
+    <text x="16" y="11" font-family="system-ui" font-size="8" font-weight="bold" fill="#93c5fd" text-anchor="middle">FCC</text>
+  </g>
+  <g transform="translate(205, 45)">
+    <rect x="0" y="0" width="32" height="16" rx="3" fill="#7c2d12" stroke="#f97316" stroke-width="1"/>
+    <text x="16" y="11" font-family="system-ui" font-size="7" font-weight="bold" fill="#fed7aa" text-anchor="middle">CISPR</text>
+  </g>
+  <g transform="translate(205, 65)">
+    <rect x="0" y="0" width="32" height="16" rx="3" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
+    <text x="16" y="11" font-family="system-ui" font-size="7" font-weight="bold" fill="#bbf7d0" text-anchor="middle">3GPP</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#f1f5f9">MCP</text>
+  <text x="250" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#94a3b8">EMC Regulations</text>
+  <text x="250" y="85" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Emission limits • Band plans • Compliance</text>
+</svg>

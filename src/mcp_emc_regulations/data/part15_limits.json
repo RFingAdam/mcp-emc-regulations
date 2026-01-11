@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "source": "47 CFR Part 15",
+    "version": "2025",
+    "last_updated": "2025-01-10"
+  },
+  "section_15_109": {
+    "title": "Radiated emission limits - Unintentional radiators",
+    "description": "Class A (commercial) and Class B (residential) limits for unintentional radiators",
+    "class_a": {
+      "description": "Digital devices marketed for use in commercial, industrial, or business environments",
+      "limits": [
+        {
+          "freq_min_mhz": 30,
+          "freq_max_mhz": 88,
+          "limit_dbuv_m": 39,
+          "distance_m": 10,
+          "detector": "quasi-peak"
+        },
+        {
+          "freq_min_mhz": 88,
+          "freq_max_mhz": 216,
+          "limit_dbuv_m": 43.5,
+          "distance_m": 10,
+          "detector": "quasi-peak"
+        },
+        {
+          "freq_min_mhz": 216,
+          "freq_max_mhz": 960,
+          "limit_dbuv_m": 46.4,
+          "distance_m": 10,
+          "detector": "quasi-peak"
+        },
+        {
+          "freq_min_mhz": 960,
+          "freq_max_mhz": 40000,
+          "limit_dbuv_m": 49.5,
+          "distance_m": 10,
+          "detector": "quasi-peak",
+          "notes": "Average limit; peak may not exceed average by more than 20 dB"
+        }
+      ]
+    },
+    "class_b": {
+      "description": "Digital devices marketed for use in residential environments",
+      "limits": [
+        {
+          "freq_min_mhz": 30,
+          "freq_max_mhz": 88,
+          "limit_dbuv_m": 40,
+          "distance_m": 3,
+          "detector": "quasi-peak"
+        },
+        {
+          "freq_min_mhz": 88,
+          "freq_max_mhz": 216,
+          "limit_dbuv_m": 43.5,
+          "distance_m": 3,
+          "detector": "quasi-peak"
+        },
+        {
+          "freq_min_mhz": 216,
+          "freq_max_mhz": 960,
+          "limit_dbuv_m": 46,
+          "distance_m": 3,
+          "detector": "quasi-peak"
+        },
+        {
+          "freq_min_mhz": 960,
+          "freq_max_mhz": 40000,
+          "limit_dbuv_m": 54,
+          "distance_m": 3,
+          "detector": "quasi-peak",
+          "notes": "Average limit; peak may not exceed average by more than 20 dB"
+        }
+      ]
+    }
+  },
+  "section_15_207": {
+    "title": "Conducted limits",
+    "description": "Limits on conducted emissions on AC power lines",
+    "class_a": {
+      "limits": [
+        {
+          "freq_min_mhz": 0.15,
+          "freq_max_mhz": 0.5,
+          "limit_dbuv": 79,
+          "detector": "quasi-peak"
+        },
+        {
+          "freq_min_mhz": 0.5,
+          "freq_max_mhz": 30,
+          "limit_dbuv": 73,
+          "detector": "quasi-peak"
+        }
+      ]
+    },
+    "class_b": {
+      "limits": [
+        {
+          "freq_min_mhz": 0.15,
+          "freq_max_mhz": 0.5,
+          "limit_dbuv_qp": 66,
+          "limit_dbuv_avg": 56,
+          "formula": "66 to 56 dBuV decreasing with log of frequency",
+          "detector": "quasi-peak and average"
+        },
+        {
+          "freq_min_mhz": 0.5,
+          "freq_max_mhz": 5,
+          "limit_dbuv_qp": 56,
+          "limit_dbuv_avg": 46,
+          "detector": "quasi-peak and average"
+        },
+        {
+          "freq_min_mhz": 5,
+          "freq_max_mhz": 30,
+          "limit_dbuv_qp": 60,
+          "limit_dbuv_avg": 50,
+          "detector": "quasi-peak and average"
+        }
+      ]
+    }
+  },
+  "section_15_209": {
+    "title": "Radiated emission limits - Intentional radiators",
+    "description": "General radiated emission limits for intentional radiators",
+    "limits": [
+      {
+        "freq_min_mhz": 0.009,
+        "freq_max_mhz": 0.490,
+        "limit_uv_m": 2400,
+        "limit_dbuv_m": 67.6,
+        "distance_m": 300,
+        "formula": "2400/f(kHz) uV/m"
+      },
+      {
+        "freq_min_mhz": 0.490,
+        "freq_max_mhz": 1.705,
+        "limit_uv_m": 24000,
+        "limit_dbuv_m": 87.6,
+        "distance_m": 300,
+        "formula": "24000/f(kHz) uV/m"
+      },
+      {
+        "freq_min_mhz": 1.705,
+        "freq_max_mhz": 30,
+        "limit_uv_m": 30,
+        "limit_dbuv_m": 29.5,
+        "distance_m": 30
+      },
+      {
+        "freq_min_mhz": 30,
+        "freq_max_mhz": 88,
+        "limit_uv_m": 100,
+        "limit_dbuv_m": 40,
+        "distance_m": 3
+      },
+      {
+        "freq_min_mhz": 88,
+        "freq_max_mhz": 216,
+        "limit_uv_m": 150,
+        "limit_dbuv_m": 43.5,
+        "distance_m": 3
+      },
+      {
+        "freq_min_mhz": 216,
+        "freq_max_mhz": 960,
+        "limit_uv_m": 200,
+        "limit_dbuv_m": 46,
+        "distance_m": 3
+      },
+      {
+        "freq_min_mhz": 960,
+        "freq_max_mhz": 40000,
+        "limit_uv_m": 500,
+        "limit_dbuv_m": 54,
+        "distance_m": 3
+      }
+    ]
+  }
+}
